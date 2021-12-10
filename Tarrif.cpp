@@ -5,7 +5,7 @@ Tarrif::Tarrif()
 	tarrif_name = "\0";
 	conName = "\0";
 	inetName = "\0";
-	balance = 0;
+	//balance = 0;
 	cost = 0;
 }
 
@@ -13,7 +13,7 @@ Tarrif::Tarrif()
 Tarrif::Tarrif(string t_n)
 {
 	tarrif_name = t_n;
-	balance = 0;
+	//balance = 0;
 	cost = 0;
 	conName = "\0";
 	inetName = "\0";
@@ -26,7 +26,7 @@ Tarrif::Tarrif(string t_n, int b, Connection con, Internet inet)
 	inetName = inet.getName();
 	connectionType = con;
 	inetType = inet;
-	balance = b;
+	//balance = b;
 	cost = con.getCost() + inet.getCost();
 }
 
@@ -35,7 +35,7 @@ Tarrif::Tarrif(const Tarrif &obj)
 	tarrif_name = obj.tarrif_name;
 	connectionType = obj.connectionType;
 	inetType = obj.inetType;
-	balance = obj.balance;
+	//balance = obj.balance;
 	cost = obj.cost;
 }
 
@@ -66,10 +66,10 @@ void Tarrif::setInternet( Internet inet)
 
 
 
-int Tarrif::getBalance()
-{
-	return balance;
-}
+//int Tarrif::getBalance()
+//{
+//	return balance;
+//}
 
 int Tarrif::getTarrifCost() 
 {
@@ -115,12 +115,23 @@ ostream& operator<<(ostream& out, const Tarrif& t)
 {
 	Connection c;
 	Internet i;
-	out << setw(SETWSIZE) << "TARIFF NAME" << setw(SETWSIZE) << "TARIFF COST" << setw(SETWSIZE) << "TARIFF BALANCE" << endl;
-	out << setw(SETWSIZE) << t.tarrif_name << setw(SETWSIZE) << t.cost << setw(SETWSIZE) <<t.balance << endl;
-	i.print_shapka();
-	out << t.inetType << endl;
-	c.print_shapka();
-	out << t.connectionType << endl;
-	
+	out << setw(SETWSIZE) << "TARIFF NAME" << setw(SETWSIZE) << "CONNECTION COST,$" << setw(SETWSIZE)  << endl;
+	out << setw(SETWSIZE) << t.tarrif_name << setw(SETWSIZE) << t.cost << setw(SETWSIZE)  << endl;
+	//i.print_shapka();
+	cout << setw(SETWSIZE) << "NAME OF CONNECTION" << setw(SETWSIZE) << "COUNT OF MINUTS" << setw(SETWSIZE) 
+		<< "COUNT OF SMS" << endl;
+	//out << t.inetType << endl;
+	Connection tempC(t.connectionType);
+	cout << setw(SETWSIZE) << tempC.getName() << setw(SETWSIZE) << tempC.getMinutes() << setw(SETWSIZE)
+		<< tempC.getCount_SMS() << endl;
+	//c.print_shapka();
+	//out << t.connectionType << endl;
+	Internet tempI(t.inetType);
+	cout << setw(SETWSIZE) << "NAME OF INTERNET" << setw(SETWSIZE) << "INTERNET SPEED,MB/S" << setw(SETWSIZE) 
+		<< "INTERNET LIMIT,GB" << endl;
+	cout << setw(SETWSIZE) << tempI.getName() << setw(SETWSIZE) << tempI.getSpeed() << setw(SETWSIZE)
+		<< tempI.getLimit() << endl;
+
+
 	return out;
 }

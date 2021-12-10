@@ -1,3 +1,7 @@
 ﻿  main.cpp
-D:\education\2 курс\никитин курсач\myClasses\main.cpp(91,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(39,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(54,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(63,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(99,21): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(116,22): warning C4018: <: несоответствие типов со знаком и без знака
   myClasses.vcxproj -> D:\education\2 курс\никитин курсач\myClasses\Debug\myClasses.exe

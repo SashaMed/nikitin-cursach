@@ -52,7 +52,7 @@ istream& operator>>(istream& in, Connection& c)
 }
 
 void Connection::print_shapka() {
-	cout << setw(SETWSIZE) << "NAME OF SERVICE" << setw(SETWSIZE) << "COST OF SERVICE" 
+	cout << setw(SETWSIZE) << "NAME OF CONNECTION" << setw(SETWSIZE) << "CONNECTION COST" 
 		<< setw(SETWSIZE) << "COUNT OF MINUTS" << setw(SETWSIZE) << "COUNT OF SMS" << endl;
 }
 

@@ -43,8 +43,8 @@ int Internet::getLimit()
 
 void Internet::print_shapka()
 {
-	cout << setw(SETWSIZE) << "NAME OF SERVICE"<< setw(SETWSIZE) << "COST OF SERVICE"
-		<< setw(SETWSIZE) <<"INTERNET SPEED" << setw(SETWSIZE) << "INTERNET LIMIT" << endl;
+	cout << setw(SETWSIZE) << "NAME OF INTERNET"<< setw(SETWSIZE) << "CONNECTION COST"
+		<< setw(SETWSIZE) <<"INTERNET SPEED,MB/S" << setw(SETWSIZE) << "INTERNET LIMIT,GB" << endl;
 }
 
 

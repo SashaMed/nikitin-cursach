@@ -13,7 +13,7 @@ protected:
 	string inetName;
 	Connection connectionType;
 	Internet inetType;
-	int balance;
+	//int balance;
 	int cost;
 public:
 	Tarrif();
@@ -26,7 +26,7 @@ public:
 	void setConnection(Connection con);
 	void setInternet( Internet inet);
 
-	int getBalance();
+	//int getBalance();
 	int getTarrifCost();
 	string getTarrif_Name();
 	string getInetName();

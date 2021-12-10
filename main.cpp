@@ -1,5 +1,6 @@
 #include"Operator.h"
 #include"Client.h"
+#include"AdminClient.h"
 
 int main() {
 	Tarrif *tarrifArr = new Tarrif[2];
@@ -38,7 +39,7 @@ int main() {
 	tarrifArr[1].setConnection(conArr[1]);
 	tarrifArr[1].setTarrif_Name("arbuz");
 
-	Operator *oper = new Operator[2];
+	Operator *oper = new Operator[3];
 	oper[0].setTariff(tarrifArr[0]);
 	oper[0].setOperatorName("life govan");
 	oper[0].setNumber("+375447750026");
@@ -48,9 +49,11 @@ int main() {
 	oper[1].setTariff(tarrifArr[1]);
 	oper[1].setNumber("+375447275676");
 
-	vector< Operator*> operVec;
-	operVec.push_back(&oper[0]);
-	operVec.push_back(&oper[1]);
+	oper[2].setOperatorName("virgin MTS");
+	/*oper[2].setTariff(tarrifArr[1]);*/
+	oper[2].setConnection(conArr[1]);
+	oper[2].setNumber("++375331234567");
+
 
 	Client sasha("mednis", "sasha", "+375447750026", oper[0]);
 	sasha.setPass("12345");
@@ -58,23 +61,45 @@ int main() {
 	Client mama("gatal", "anna", "+375447275676", oper[1]);
 	mama.setPass("god");
 
+	Client oleg("vector", "oleg", "+375331234567", oper[2]);
+	oleg.setPass("321");
+
+	Admin admin("dashkevich", "nikita", "+375293063043");
+	admin.setPass("sexing");
+
 	vector<Client*> clientArr;
 	clientArr.push_back(&sasha);
 	clientArr.push_back(&mama);
+	clientArr.push_back(&oleg);
+	clientArr.push_back(&admin);
+
+	vector< Operator*> operVec;
+	operVec.push_back(&sasha.getOperator());
+	operVec.push_back(&mama.getOperator());
+	operVec.push_back(&oleg.getOperator());
 
 	vector<Tarrif*> tariffVec;
 	tariffVec.push_back(&tarrifArr[0]);
 	tariffVec.push_back(&tarrifArr[1]);
 
+	Client* temp;
 	string forNum;
 	string forPass;
 	char sw;
 	int fl = 0;
+	vector<Internet> inetVec;
+	vector<Connection> conVec;
+	for (int q = 0; q < 2; q++)
+	{
+		inetVec.push_back(inetArr[q]);
+		conVec.push_back(conArr[q]);
+
+	}
 	while (1)
 	{
 		system("cls");
 		cout << "Choose operation: \n\n";
-		cout << "1. Log in.\n2. Exit.\n";
+		cout << "1. Log in.\n2. Registration.\n3. Exit.\n";
 		cout << endl;
 		fflush(stdin);
 		cin >> sw;
@@ -93,18 +118,26 @@ int main() {
 				if (clientArr[i]->getNumber() == forNum && clientArr[i]->getPass() == forPass)
 				{
 					fl++;
-					clientArr[i]->menu(operVec, tariffVec, inetArr,conArr);
-					/*cout << "Autorized to: \n";
-					cout << *clientArr[i];
-					clientArr[i]->getOperator().setTarrif_Name("aaaaaaaaaaaaaaa");*/
-					cin.get();
+					//clientArr[i]->menu(clientArr, operVec, tariffVec, inetVec, conVec);
+					if (clientArr[i]->class_cheak() == 0 ) { clientArr[i]->menu( operVec, tariffVec, inetVec, conVec); }
+					else { clientArr[i]->menu(clientArr, operVec, &tariffVec, &inetVec, &conVec); }
 					break;
 				}
 			}
-			if (fl ==0 ) cout << "\nUser is not found.\n";
-			cin.get();
+			if (fl == 0)
+			{
+				cout << "\nUser is not found.\n";
+				cin.get();
+			}
 			break;
 		case '2':
+			temp = new Client;
+			clientArr.push_back(temp);
+			//operVec.push_back(&temp->getOperator());
+			if (temp->registration(tariffVec,operVec) == false) clientArr.pop_back();
+			operVec.push_back(&temp->getOperator());
+			break;
+		case '3':
 			return 0;
 		default:
 			system("cls");

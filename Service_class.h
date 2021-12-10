@@ -3,9 +3,10 @@
 #include <string.h>
 #include <vector>
 #include <iomanip>
+#include<conio.h>
 using namespace std;
 
-#define SETWSIZE 18
+#define SETWSIZE 20
 
 class Service_class {
 protected:

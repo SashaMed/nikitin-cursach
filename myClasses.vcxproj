@@ -150,6 +150,7 @@
     <ClCompile Include="Tarrif.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminClient.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="Internet.h" />

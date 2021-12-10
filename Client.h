@@ -33,8 +33,12 @@ public:
 	string getName();
 	string getNumber();
 	Operator& getOperator();
+	void print_shapka();
 
-	void menu(vector<Operator*> operVec, vector<Tarrif*> tariffVec, Internet inetArr[],Connection conArr[]);
+	bool registration(vector<Tarrif*> tariffVec, vector<Operator*> operVec);
+	void menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<Internet> inetVec, vector<Connection> conVec);
+	virtual void menu(vector<Client*> clientVec, vector<Operator*> operVec, vector<Tarrif*> *tariffVec, vector<Internet>* inetVec, vector<Connection> *conVec) {};
+	virtual int class_cheak();
 
 	~Client();
 	friend istream& operator>>(istream& in, Client& c);
