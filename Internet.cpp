@@ -52,9 +52,11 @@ istream& operator >> (istream& in, Internet& I)
 {
 	in >> dynamic_cast<Service_class&>(I);
 	cout << "Speed: ";
-	in >> I.speed;
+	//in >> I.speed;
+	input_number_in_diapazone<float>(in, I.speed, 0, 1000000);
 	cout << "Limit: ";
-	in >> I.limit;
+	input_number_in_diapazone<int>(in, I.limit, 0, 1000000);
+	//in >> I.limit;
 	return in;
 }
 
@@ -63,4 +65,32 @@ ostream& operator << (ostream& out, const Internet& I)
 	out << dynamic_cast<const Service_class&>(I);
 	out << setw(SETWSIZE) << I.speed << setw(SETWSIZE) << I.limit;
 	return out;
+}
+
+
+ostream& operator<<(fstream& out, const Internet obj)
+{
+	out << setw(SETWSIZE);
+	out << obj.name;
+	out << " ";
+	out << obj.cost;
+	out << " ";
+	out << obj.speed;
+	out << " ";
+	out << obj.limit;
+	out << endl;
+	return out;
+}
+
+ifstream& operator>>(ifstream& in, Internet& obj)
+{
+	Func_Class func;
+	char* buf = new char[SETWSIZE]; 
+	in.getline(buf, SETWSIZE);
+	in.clear();
+	obj.name = func.sdvig(buf); 	in.get();
+	in >> obj.cost;	in.get();
+	in >> obj.speed;	in.get();
+	in >> obj.limit; in.get(); in.get();
+	return in;
 }

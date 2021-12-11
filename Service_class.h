@@ -1,9 +1,15 @@
 #pragma once
+#include"Exception.h"
+#include"Input_exception.h"
+#include"Func_Class.h"
 #include <iostream>
 #include <string.h>
+#include <string>
 #include <vector>
 #include <iomanip>
 #include<conio.h>
+#include<fstream>
+
 using namespace std;
 
 #define SETWSIZE 20

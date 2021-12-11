@@ -8,7 +8,7 @@ using namespace std;
 
 class Client
 {
-private:
+protected:
 	string surname;
 	string name;
 	string number;
@@ -35,6 +35,8 @@ public:
 	Operator& getOperator();
 	void print_shapka();
 
+	void operator=(const Client& obj);
+
 	bool registration(vector<Tarrif*> tariffVec, vector<Operator*> operVec);
 	void menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<Internet> inetVec, vector<Connection> conVec);
 	virtual void menu(vector<Client*> clientVec, vector<Operator*> operVec, vector<Tarrif*> *tariffVec, vector<Internet>* inetVec, vector<Connection> *conVec) {};
@@ -43,4 +45,40 @@ public:
 	~Client();
 	friend istream& operator>>(istream& in, Client& c);
 	friend ostream& operator<<(ostream& out, const Client& c);
+
+
+	friend ostream& operator << (fstream& out, const Client obj)
+	{
+		out << setw(SETWSIZE);
+		out << obj.surname;
+		out << setw(SETWSIZE);
+		out << obj.name;
+		out << setw(SETWSIZE);
+		out << obj.number;
+		out << setw(SETWSIZE);
+		out << obj.pass;
+		out << endl;
+		return out;
+	}
+
+
+	friend ifstream& operator >> (ifstream& in, Client& obj)
+	{
+		Func_Class func; char c;
+		char* buf = new char[SETWSIZE +1];
+		in.getline(buf, SETWSIZE +1);
+		in.clear();
+		obj.surname = func.sdvig(buf);
+		in.getline(buf, SETWSIZE +1);
+		in.clear();
+		obj.name = func.sdvig(buf);
+		in.getline(buf, SETWSIZE +1);
+		in.clear();
+		obj.number = func.sdvig(buf);
+		in.getline(buf, SETWSIZE +1);
+		in.clear();
+		obj.pass = func.sdvig(buf);
+		//in.get();
+		return in;
+	}
 };

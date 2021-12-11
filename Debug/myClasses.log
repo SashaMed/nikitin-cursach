@@ -1,7 +1,24 @@
 ﻿  main.cpp
-D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(39,23): warning C4018: <: несоответствие типов со знаком и без знака
-D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(54,23): warning C4018: <: несоответствие типов со знаком и без знака
-D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(63,23): warning C4018: <: несоответствие типов со знаком и без знака
-D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(99,21): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-D:\education\2 курс\никитин курсач\myClasses\main.cpp(116,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\Input_exception.h(45,17): warning C5043: "terminate": спецификация исключения не соответствует предыдущему объявлению
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_terminate.h(29): message : см. объявление "terminate"
+D:\education\2 курс\никитин курсач\myClasses\Input_exception.h(45,17): warning C4273: terminate: несовместимое связывание dll
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_terminate.h(29,48): message : см. предыдущее определение "terminate"
+D:\education\2 курс\никитин курсач\myClasses\Tarrif.h(54,25): warning C4101: c: неиспользованная локальная переменная
+D:\education\2 курс\никитин курсач\myClasses\Operator.h(58,25): warning C4101: c: неиспользованная локальная переменная
+D:\education\2 курс\никитин курсач\myClasses\Client.h(67,25): warning C4101: c: неиспользованная локальная переменная
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(40,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(56,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(66,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(170,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(213,25): warning C4101: c: неиспользованная локальная переменная
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(59,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(66,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(86,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(111,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(254,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(282,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(288,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(295,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(301,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(308,22): warning C4018: <: несоответствие типов со знаком и без знака
   myClasses.vcxproj -> D:\education\2 курс\никитин курсач\myClasses\Debug\myClasses.exe

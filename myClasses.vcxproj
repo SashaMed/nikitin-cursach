@@ -141,6 +141,8 @@
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Connection.cpp" />
+    <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="Input_exception.cpp" />
     <ClCompile Include="Internet.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
@@ -153,6 +155,9 @@
     <ClInclude Include="AdminClient.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Connection.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="Func_Class.h" />
+    <ClInclude Include="Input_exception.h" />
     <ClInclude Include="Internet.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Mobile plan.h" />

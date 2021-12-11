@@ -97,16 +97,26 @@ int Client::class_cheak()
 	return 0;
 }
 
+void Client::operator=(const Client& obj)
+{
+	this->name = obj.name;
+	this->surname = obj.surname;
+	this->number = obj.number;
+	this->pass = obj.pass;
+	//Operator temp(obj.oper)
+	this->setOperator(obj.oper);
+}
 
 void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<Internet> inetVec, vector<Connection> conVec)
 {
 	int temp = 0;
 	int fl = 0;
+	int switch_int;
 	string inputTemp;
 	char switch_on;
 	Operator* operTemp = &this->getOperator();
-
-
+	vector< Client> otkat;
+	otkat.push_back(*this);
 	while (1)
 	{
 		system("cls");
@@ -114,7 +124,7 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 		cout << *this << endl<< endl;
 		cout << "Choose operation: \n\n";
 		cout << "1. See balance.\n2. Change tariff.\n3. Connect internet.\n4. Temporary block of number.\n";
-		cout << "5. Top up balance.\n6. Change internet.\n7. Change connection.\n8. See info.\n9. Exit.\n\n";
+		cout << "5. Top up balance.\n6. Change internet.\n7. Change connection.\n8. See info.\n9. Exit.\n10. Undo last action.\n\n";
 
 		if (this->getOperator().getBlockCheak() == true)
 		{
@@ -131,26 +141,29 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 		}
 		else
 		{
-			cin >> switch_on;
+			//cin >> switch_int;
+			input_number_in_diapazone(cin, switch_int, 1, 10);
 			cin.get();
 			cin.clear();
 			fflush(stdin);
-			switch (switch_on)
+			switch (switch_int)
 			{
-			case '1':
+			case 1:
 				cout << "BALANCE: " << oper.getBalance() << "$" << endl;
 				rewind(stdin); 	_getch();
 				break;
 
 
-			case '2':
+			case 2:
+				otkat.push_back(*this);
 				cout << "CHOOSE TARIFF: \n" << endl;
 				for (int i = 0; i < tariffVec.size(); i++)
 				{
 					cout << i + 1 << ")\n";
 					cout << *tariffVec[i] << endl;
 				}
-				cin >> temp;
+				//cin >> temp;
+				input_number_in_diapazone<int>(cin, temp, 1, tariffVec.size());
 				if (temp > tariffVec.size()) { cout << "Wrong input." << endl; rewind(stdin);  _getch(); break; }
 				cout << "It will cost " << tariffVec[temp - 1]->getTarrifCost() << "$, continue (y/n)?\n";
 				cin >> switch_on;
@@ -165,7 +178,8 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 				break;
 
 
-			case '3':
+			case 3:
+				otkat.push_back(*this);
 				if (this->getOperator().getInternet().getName() != "\0")
 				{
 					cout << "You already have internet:\n";
@@ -183,7 +197,7 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 						cout << inetVec[i] << endl;
 					}
 
-					cin >> temp;
+					input_number_in_diapazone<int>(cin, temp, 1, inetVec.size());
 					if (temp > inetVec.size()) { cout << "Wrong input." << endl; rewind(stdin);  _getch(); break; }
 					cout << "It will cost " << inetVec[temp - 1].getCost() << "$, continue (y/n)?\n";
 					cin >> switch_on;
@@ -199,7 +213,8 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 				break;
 
 
-			case '4':
+			case 4:
+				otkat.push_back(*this);
 				cout << "Do you want to block number? (y/n)?\n";
 				cin >> switch_on;
 				if (switch_on == 'y')
@@ -212,12 +227,13 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 				break;
 
 
-			case '5':
-				
+			case 5:
+				otkat.push_back(*this);
 				fl = 0;
-				cout << "Input number to top up balance, or input 'this' to top up balance on this number.\n";
-				cin >> inputTemp;
-				if (inputTemp != "this")
+				cout << "Input number to top up balance, or input '1111' to top up balance on this number.\n";
+				//cin >> inputTemp;
+				input_phone_number(cin, inputTemp);
+				if (inputTemp != "1111")
 				{
 					for (int j = 0; j < operVec.size(); j++)
 					{
@@ -241,14 +257,16 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 				}
 
 				cout << "Input amount of money to top up balance.\n";
-				cin >> temp;
+				//cin >> temp;
+				input_number_in_diapazone<int>(cin, temp, 1, 2000000);
 				operTemp->change_balance(temp);
 				cout << temp << "$ was credited to the " << operTemp->getNumber() << " balance.\n";
 				rewind(stdin);  _getch();
 				break;
 
 
-			case '6':
+			case 6:
+				otkat.push_back(*this);
 				cout << "CHOOSE INTERNET: \n" << endl;
 				cout << "  "; inetVec[0].print_shapka();
 				for (int i = 0; i < inetVec.size(); i++)
@@ -257,7 +275,8 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 					cout << inetVec[i] << endl;
 				}
 
-				cin >> temp;
+				//cin >> temp;
+				input_number_in_diapazone<int>(cin, temp, 1, inetVec.size());
 				if (temp > inetVec.size()) { cout << "Wrong input." << endl; rewind(stdin);  _getch(); break; }
 				cout << "It will cost " << inetVec[temp - 1].getCost() << "$, continue (y/n)?\n";
 				cin >> switch_on;
@@ -273,7 +292,8 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 				break;
 
 
-			case '7':
+			case 7:
+				otkat.push_back(*this);
 				cout << "CHOOSE CONNECTION: \n" << endl;
 				cout << "  "; conVec[0].print_shapka();
 				for (int i = 0; i < conVec.size(); i++)
@@ -282,7 +302,8 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 					cout << conVec[i] << endl;
 				}
 
-				cin >> temp;
+				//cin >> temp;
+				input_number_in_diapazone<int>(cin, temp, 1, conVec.size());
 				if (temp > conVec.size()) { cout << "Wrong input." << endl; rewind(stdin);  _getch(); break; }
 				cout << "It will cost " << conVec[temp - 1].getCost() << "$, continue (y/n)?\n";
 				cin >> switch_on;
@@ -297,13 +318,19 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 				rewind(stdin);  _getch();
 				break;
 
-			case '8':
+			case 8:
 				this->getOperator().info();
 				cout << endl;
 				cin.get();
 				break;
-			case '9':
+			case 9:
 				return;
+				break;
+			case 10:
+				*this = otkat.back();
+					otkat.pop_back();
+				cout << endl;
+				cin.get();
 				break;
 			default:
 				break;
@@ -322,17 +349,21 @@ bool Client::registration(vector<Tarrif*> tariffVec, vector<Operator*> operVec)
 	system("cls");
 	cout << "\nREGISTRATION: \n";
 	cout << "\nInput phone number: ";
-	cin >> inputTemp;
+	//cin >> inputTemp;
+	input_phone_number(cin, inputTemp);
 	this->getOperator().setNumber(inputTemp);
 	this->setNumber(inputTemp);
 	cout << "\nInput password: ";
-	cin >> inputTemp;
+	//cin >> inputTemp;
+	input_letters_and_numbers(cin, inputTemp);
 	this->setPass(inputTemp);
 	cout << "\nInput name: ";
-	cin >> inputTemp;
+	//cin >> inputTemp;
+	input_letters(cin, inputTemp);
 	this->setName(inputTemp);
 	cout << "\nInput surname: ";
-	cin >> inputTemp;
+	//cin >> inputTemp;
+	input_letters(cin, inputTemp);
 	this->setSurname(inputTemp);
 	cout << "\nChoose operator: \n";
 	for (int i = 0; i < operVec.size(); i++)
@@ -340,7 +371,8 @@ bool Client::registration(vector<Tarrif*> tariffVec, vector<Operator*> operVec)
 		cout << i + 1 << ") ";
 		cout << operVec[i]->getOperatorName() << endl;
 	}
-	cin >> inputInt;
+	//cin >> inputInt;
+	input_number_in_diapazone<int>(cin, inputInt, 1, operVec.size());
 	this->getOperator().setOperatorName(operVec[inputInt-1]->getOperatorName());
 	
 	for (int i = 0; i < tariffVec.size(); i++)
@@ -348,7 +380,8 @@ bool Client::registration(vector<Tarrif*> tariffVec, vector<Operator*> operVec)
 		cout << i + 1 << ")\n";
 		cout << *tariffVec[i] << endl;
 	}
-	cin >> inputInt;
+	//cin >> inputInt;
+	input_number_in_diapazone<int>(cin, inputInt, 1, tariffVec.size());
 	this->getOperator().setTariff(*tariffVec[inputInt - 1]);
 
 

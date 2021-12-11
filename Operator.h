@@ -35,4 +35,44 @@ public:
 
 	friend istream& operator>>(istream& in, Operator& op);
 	friend ostream& operator<<(ostream& out, const Operator& op);
+
+
+	friend ostream& operator << (fstream& out, const Operator obj)
+	{
+		out << setw(SETWSIZE);
+		out << obj.operatorName;
+		out << setw(SETWSIZE);
+		out << obj.number;
+		out << setw(SETWSIZE);
+		out << obj.tarrif_name;
+		out << " ";
+		out << obj.blockCheak;
+		out << " ";
+		out << obj.balance;
+		out << endl;
+		return out;
+	}
+
+	friend ifstream& operator >> (ifstream& in, Operator& obj)
+	{
+		Func_Class func; char c;
+		char* buf = new char[SETWSIZE + 1];		
+		in.getline(buf, SETWSIZE + 1);
+		in.clear();
+		obj.operatorName = func.sdvig(buf);		
+		in.getline(buf, SETWSIZE + 1);
+		in.clear();
+		obj.number = func.sdvig(buf);		
+		in.getline(buf, SETWSIZE + 1);
+		in.clear();
+		obj.tarrif_name = func.sdvig(buf);
+		in.get();
+		in >> obj.blockCheak;
+		in.get();
+		in >> obj.balance;
+		in.get();
+		return in;
+	}
+
+
 };

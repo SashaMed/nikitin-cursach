@@ -37,6 +37,8 @@ Tarrif::Tarrif(const Tarrif &obj)
 	inetType = obj.inetType;
 	//balance = obj.balance;
 	cost = obj.cost;
+	conName = obj.conName;
+	inetName = obj.inetName;
 }
 
 Tarrif::~Tarrif() {}
@@ -107,7 +109,8 @@ Internet Tarrif::getInternet()
 istream& operator >> (istream& in, Tarrif& t)
 {
 	cout << "Tarrif name: ";
-	in >> t.tarrif_name;
+	//in >> t.tarrif_name;
+	input_letters_and_numbers(in, t.tarrif_name);
 	return in;
 }
 
@@ -122,16 +125,18 @@ ostream& operator<<(ostream& out, const Tarrif& t)
 		<< "COUNT OF SMS" << endl;
 	//out << t.inetType << endl;
 	Connection tempC(t.connectionType);
-	cout << setw(SETWSIZE) << tempC.getName() << setw(SETWSIZE) << tempC.getMinutes() << setw(SETWSIZE)
+	cout << setw(SETWSIZE) << t.conName << setw(SETWSIZE) << tempC.getMinutes() << setw(SETWSIZE)
 		<< tempC.getCount_SMS() << endl;
 	//c.print_shapka();
 	//out << t.connectionType << endl;
 	Internet tempI(t.inetType);
 	cout << setw(SETWSIZE) << "NAME OF INTERNET" << setw(SETWSIZE) << "INTERNET SPEED,MB/S" << setw(SETWSIZE) 
 		<< "INTERNET LIMIT,GB" << endl;
-	cout << setw(SETWSIZE) << tempI.getName() << setw(SETWSIZE) << tempI.getSpeed() << setw(SETWSIZE)
+	cout << setw(SETWSIZE) << t.inetName << setw(SETWSIZE) << tempI.getSpeed() << setw(SETWSIZE)
 		<< tempI.getLimit() << endl;
 
 
 	return out;
 }
+
+

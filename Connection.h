@@ -23,4 +23,7 @@ public:
 
 	friend istream& operator>>(istream& in, Connection& c);
 	friend ostream& operator<<(ostream& out, const Connection& c);
+
+	friend ostream& operator << (fstream& out, const Connection obj);
+	friend ifstream& operator >> (ifstream& in, Connection& obj);
 };

@@ -5,7 +5,7 @@
 class Admin : public Client
 {
 public:
-	Admin();
+	Admin() {};
 	Admin(string s, string n, string num) : Client(s, n, num) {};
 	Admin(string surn, string name, string num, Operator op) : Client(surn, name, num, op) {};
 	Admin(const Client& obj) : Client(obj) {};
@@ -28,17 +28,19 @@ public:
 			cout << *this << endl << endl;
 			cout << "Choose operation: \n\n";
 			cout << "1. View all users.\n2. New tariff.\n3. New internet.\n4. New connection.\n";
-			cout << "5. Log in client account.\n7. Exit.\n\n";
+			cout << "5. Log in client account.\n6. Exit.\n\n";
 			cin >> switch_on;
 			cin.clear();
 			fflush(stdin);
 			switch (switch_on)
 			{
 			case '1':
-				clientVec[0]->print_shapka(); cout << setw(SETWSIZE) << "OPERATOR NAME" << endl;
+				clientVec[0]->print_shapka(); cout << setw(SETWSIZE) << "PASSWORD"
+					<< setw(SETWSIZE) << "OPERATOR NAME" << endl;
 				for (int i = 0; i < clientVec.size(); i++)
 				{
-					cout << *clientVec[i] << setw(SETWSIZE) << clientVec[i]->getOperator().getOperatorName()<<endl;
+					cout << *clientVec[i] << setw(SETWSIZE) << clientVec[i]->getPass()
+						<< setw(SETWSIZE) << clientVec[i]->getOperator().getOperatorName() << endl;
 				}
 
 				rewind(stdin);  _getch();
@@ -56,7 +58,8 @@ public:
 					cout << i + 1 << ")\n";
 					cout << inetVec->at(i) << endl;
 				}
-				cin >> inputInt;
+				//cin >> inputInt;
+				input_number_in_diapazone<int>(cin, inputInt, 1, inetVec->size());
 				ttemp->setInternet(inetVec->at(inputInt - 1));
 
 				cout << "Choose connection for tariff:\n";
@@ -65,7 +68,8 @@ public:
 					cout << i + 1 << ")\n";
 					cout << conVec->at(i) << endl;
 				}
-				cin >> inputInt;
+				//cin >> inputInt;
+				input_number_in_diapazone<int>(cin, inputInt, 1, conVec->size());
 				ttemp->setConnection(conVec->at(inputInt - 1));
 				cout << "New tariff was created: \n";
 				//ttemp->print_shapka();
@@ -87,20 +91,20 @@ public:
 			case '3':
 				cout << "NEW INTERNET:\n\n";
 				itemp = new Internet;
-
-				cout << "Input name of internet: ";
-				cin >> inputStr;
-				itemp->setName(inputStr);
-				cout << "\nInput cost of internet: ";
-				cin >> inputInt;
-				itemp->setCost(inputInt);
-				cout << "\nInput speed of internet: ";
-				cin >> inputInt;
-				itemp->setSpeed(inputInt);
-				cout << "\nInput limit of internet: ";
-				cin >> inputInt;
-				itemp->setLimit(inputInt);
-				//cin >> *itemp;
+				cin >> *itemp;
+				//cout << "Input name of internet: ";
+				//cin >> inputStr;
+				//itemp->setName(inputStr);
+				//cout << "\nInput cost of internet: ";
+				//cin >> inputInt;
+				//itemp->setCost(inputInt);
+				//cout << "\nInput speed of internet: ";
+				//cin >> inputInt;
+				//itemp->setSpeed(inputInt);
+				//cout << "\nInput limit of internet: ";
+				//cin >> inputInt;
+				//itemp->setLimit(inputInt);
+				////cin >> *itemp;
 				cout << "New internet was created: \n";
 				itemp->print_shapka();
 				cout << *itemp;
@@ -116,7 +120,7 @@ public:
 				{
 					cout << "New internet was not created: \n";
 				}
-				
+
 
 
 				rewind(stdin);  _getch();
@@ -124,20 +128,20 @@ public:
 			case '4':
 				cout << "NEW CONNECTION:\n\n";
 				ctemp = new Connection;
-
-				cout << "Input name of connection: ";
-				cin >> inputStr;
-				ctemp->setName(inputStr);
-				cout << "\nInput cost of connection: ";
-				cin >> inputInt;
-				ctemp->setCost(inputInt);
-				cout << "\nInput count of minuts for connection: ";
-				cin >> inputInt;
-				ctemp->setMinutes(inputInt);
-				cout << "\nInput count of SMS for connection: ";
-				cin >> inputInt;
-				ctemp->setCount_SMS(inputInt);
-				//cin >> *itemp;
+				cin >> *ctemp;
+				//cout << "Input name of connection: ";
+				//cin >> inputStr;
+				//ctemp->setName(inputStr);
+				//cout << "\nInput cost of connection: ";
+				//cin >> inputInt;
+				//ctemp->setCost(inputInt);
+				//cout << "\nInput count of minuts for connection: ";
+				//cin >> inputInt;
+				//ctemp->setMinutes(inputInt);
+				//cout << "\nInput count of SMS for connection: ";
+				//cin >> inputInt;
+				//ctemp->setCount_SMS(inputInt);
+				////cin >> *itemp;
 				cout << "New connection was created: \n";
 				ctemp->print_shapka();
 				cout << *ctemp;
@@ -148,7 +152,6 @@ public:
 				if (inputChar == 'y')
 				{
 					conVec->push_back(*ctemp);
-
 				}
 				else
 				{
@@ -160,7 +163,28 @@ public:
 				rewind(stdin);  _getch();
 				break;
 
-			case'7':
+			case '5':
+				cout << "CHOOSE CLIENT ACCOUNT\n";
+				cout << "  ";
+				clientVec[0]->print_shapka(); cout << setw(SETWSIZE) << "OPERATOR NAME" << endl;
+				for (int i = 0; i < clientVec.size(); i++)
+				{
+					cout << i + 1 << ")" << *clientVec[i]
+						<< setw(SETWSIZE) << clientVec[i]->getOperator().getOperatorName() << endl;
+				}
+				input_number_in_diapazone<int>(cin, inputInt, 1, clientVec.size());
+				if (clientVec[inputInt - 1]->getNumber() != this->getNumber())
+				{
+					clientVec[inputInt - 1]->menu(operVec, *tariffVec, *inetVec, *conVec);
+				}
+				else
+				{
+					cout << "Accses denied.\n";
+				}
+
+				rewind(stdin);  _getch();
+				break;
+			case'6':
 				return;
 			default:
 				break;
@@ -169,5 +193,40 @@ public:
 		}
 	}
 
+	friend ostream& operator << (fstream& out, const Admin obj)
+	{
+		out << setw(SETWSIZE);
+		out << obj.surname;
+		out << setw(SETWSIZE);
+		out << obj.name;
+		out << setw(SETWSIZE);
+		out << obj.number;
+		out << setw(SETWSIZE);
+		out << obj.pass;
+		out << endl;
+		return out;
+	}
+
+
+	friend ifstream& operator >> (ifstream& in, Admin& obj)
+	{
+		Func_Class func; char c;
+		char* buf = new char[SETWSIZE + 1];
+		in.getline(buf, SETWSIZE + 1);
+		in.clear();
+		obj.surname = func.sdvig(buf);
+		in.getline(buf, SETWSIZE + 1);
+		in.clear();
+		obj.name = func.sdvig(buf);
+		in.getline(buf, SETWSIZE + 1);
+		in.clear();
+		obj.number = func.sdvig(buf);
+		in.getline(buf, SETWSIZE + 1);
+		in.clear();
+		obj.pass = func.sdvig(buf);
+		//in.get();
+		return in;
+	}
+	
 	int class_cheak() { return 1; };
 };

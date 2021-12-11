@@ -33,9 +33,11 @@ unsigned int Service_class::getCost()
 istream& operator>>(istream& in, Service_class& c) 
 {
 	cout << "Name: ";
-	in >> c.name;
+	//in >> c.name;
+	input_letters_and_numbers(in, c.name);
 	cout << "Cost: ";
-	in >> c.cost;
+	//in >> c.cost;
+	input_number_in_diapazone<unsigned int>(in, c.cost, 0, 1000000);
 	return in;
 }
 

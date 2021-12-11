@@ -22,4 +22,7 @@ public:
 
 	friend istream& operator>>(istream& in, Internet& I);
 	friend ostream& operator<<(ostream& out, const Internet& I);
+
+	friend ostream& operator << (fstream& out, const Internet obj);
+	friend ifstream& operator >> (ifstream& in, Internet& obj);
 };
