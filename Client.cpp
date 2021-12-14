@@ -109,6 +109,10 @@ void Client::operator=(const Client& obj)
 
 void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<Internet> inetVec, vector<Connection> conVec)
 {
+	for (int i = 0; i < operVec.size(); i++) {
+		if (operVec[i]->getNumber() == this->number)
+			this->getOperator() = *operVec[i];
+	}
 	int temp = 0;
 	int fl = 0;
 	int switch_int;
@@ -324,6 +328,10 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 				cin.get();
 				break;
 			case 9:
+				for (int i = 0; i < operVec.size(); i++) {
+					if (operVec[i]->getNumber() == this->number)
+						this->getOperator() = *operVec[i];
+				}
 				return;
 				break;
 			case 10:
