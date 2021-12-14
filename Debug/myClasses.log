@@ -1,4 +1,5 @@
-﻿  Client.cpp
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(1097,5): warning MSB8027: два или более файлов с именем List.cpp выводят результаты в одно и то же расположение. Это может стать причиной неверного результата сборки.  Включенные файлы — List.cpp, list\List.cpp.
+  Client.cpp
 D:\education\2 курс\никитин курсач\myClasses\Input_exception.h(45,17): warning C5043: "terminate": спецификация исключения не соответствует предыдущему объявлению
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_terminate.h(29): message : см. объявление "terminate"
 D:\education\2 курс\никитин курсач\myClasses\Input_exception.h(45,17): warning C4273: terminate: несовместимое связывание dll
@@ -19,5 +20,41 @@ D:\education\2 курс\никитин курсач\myClasses\Client.cpp(311,14)
 D:\education\2 курс\никитин курсач\myClasses\Client.cpp(331,23): warning C4018: <: несоответствие типов со знаком и без знака
 D:\education\2 курс\никитин курсач\myClasses\Client.cpp(377,20): warning C4018: <: несоответствие типов со знаком и без знака
 D:\education\2 курс\никитин курсач\myClasses\Client.cpp(386,20): warning C4018: <: несоответствие типов со знаком и без знака
+  Algorithm.cpp
+  Iterator.cpp
+  List.cpp
+  main.cpp
+D:\education\2 курс\никитин курсач\myClasses\Input_exception.h(45,17): warning C5043: "terminate": спецификация исключения не соответствует предыдущему объявлению
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_terminate.h(29): message : см. объявление "terminate"
+D:\education\2 курс\никитин курсач\myClasses\Input_exception.h(45,17): warning C4273: terminate: несовместимое связывание dll
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_terminate.h(29,48): message : см. предыдущее определение "terminate"
+D:\education\2 курс\никитин курсач\myClasses\Tarrif.h(54,25): warning C4101: c: неиспользованная локальная переменная
+D:\education\2 курс\никитин курсач\myClasses\Operator.h(58,25): warning C4101: c: неиспользованная локальная переменная
+D:\education\2 курс\никитин курсач\myClasses\Client.h(67,25): warning C4101: c: неиспользованная локальная переменная
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(40,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(56,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(66,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(170,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(191,23): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\AdminClient.h(230,25): warning C4101: c: неиспользованная локальная переменная
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(88,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(95,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(116,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(143,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(291,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(319,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(325,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(332,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(338,22): warning C4018: <: несоответствие типов со знаком и без знака
+D:\education\2 курс\никитин курсач\myClasses\main.cpp(346,22): warning C4018: <: несоответствие типов со знаком и без знака
+  Operator.cpp
+D:\education\2 курс\никитин курсач\myClasses\Input_exception.h(45,17): warning C5043: "terminate": спецификация исключения не соответствует предыдущему объявлению
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_terminate.h(29): message : см. объявление "terminate"
+D:\education\2 курс\никитин курсач\myClasses\Input_exception.h(45,17): warning C4273: terminate: несовместимое связывание dll
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\corecrt_terminate.h(29,48): message : см. предыдущее определение "terminate"
+D:\education\2 курс\никитин курсач\myClasses\Tarrif.h(54,25): warning C4101: c: неиспользованная локальная переменная
+D:\education\2 курс\никитин курсач\myClasses\Operator.h(58,25): warning C4101: c: неиспользованная локальная переменная
+  Создание кода...
+Debug\List.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
      Создается библиотека D:\education\2 курс\никитин курсач\myClasses\Debug\myClasses.lib и объект D:\education\2 курс\никитин курсач\myClasses\Debug\myClasses.exp
   myClasses.vcxproj -> D:\education\2 курс\никитин курсач\myClasses\Debug\myClasses.exe

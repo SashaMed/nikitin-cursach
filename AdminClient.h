@@ -28,7 +28,7 @@ public:
 			cout << *this << endl << endl;
 			cout << "Choose operation: \n\n";
 			cout << "1. View all users.\n2. New tariff.\n3. New internet.\n4. New connection.\n";
-			cout << "5. Log in client account.\n6. Exit.\n\n";
+			cout << "5. Log in client account.\n6. Exit.\n7. Delete tariff\n";
 			cin >> switch_on;
 			cin.clear();
 			fflush(stdin);
@@ -186,6 +186,23 @@ public:
 				break;
 			case'6':
 				return;
+			case '7':
+				cout << "CHOOSE TARIFF TO DELETE: \n" << endl;
+				for (int i = 0; i < tariffVec->size(); i++)
+				{
+					cout << i + 1 << ")\n";
+					cout << tariffVec->at(i) << endl;
+				}
+				//cin >> temp;
+				input_number_in_diapazone<int>(cin, inputInt, 1, tariffVec->size());
+				cout << "Are you sure? (y/n)?\n";
+				//cin >>
+				if (_getch() == 'y') {
+					cout << tariffVec ->at(inputInt - 1) << " was deleted\n";
+					tariffVec->erase(tariffVec->begin() + inputInt-1);
+				}
+				rewind(stdin);  _getch();
+				break;
 			default:
 				break;
 			}

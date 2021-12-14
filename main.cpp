@@ -1,6 +1,7 @@
 #include"Operator.h"
 #include"Client.h"
 #include"AdminClient.h"
+#include"File_Header.h"
 
 int main() {
 
@@ -25,36 +26,64 @@ int main() {
 
 
 
+	//Connection* t;
+	//ifstream in_c(conPath);
+	//while (!in_c.eof()) {
+	//	t = new Connection;
+	//	in_c >> *t;
+	//	if (t->getName() == "") break;
+	//	conVec.push_back(*t);
+	//	cout << *t << endl;
+	//}
+	//in_c.close();
+	//cout << endl;
+
+
 	Connection* t;
-	ifstream in_c(conPath);
-	while (!in_c.eof()) {
+	T_File<Connection> in_c(conPath);
+	while (!in_c.InEof()) {
 		t = new Connection;
-		in_c >> *t;
+		//in_c >> *t;
+		*t = in_c.read();
 		if (t->getName() == "") break;
 		conVec.push_back(*t);
 		cout << *t << endl;
 	}
-	in_c.close();
+	in_c.Inclose();
 	cout << endl;
 
 
-	Internet* q ;
-	ifstream in_i(inetPath);
+	//Internet* q ;
+	//ifstream in_i(inetPath);
+	//in_i.get();
+	//while (!in_i.eof()) {
+	//	q = new Internet;
+	//	in_i >> *q;
+	//	inetVec.push_back(*q);
+	//	cout << *q << endl;
+	//}
+	//in_i.close();
+	//cout << endl;
+
+	Internet* q;
+	T_File<Internet> in_i(inetPath);
 	in_i.get();
-	while (!in_i.eof()) {
+	while (!in_i.InEof()) {
 		q = new Internet;
-		in_i >> *q;
+		//in_i >> *q;
+		*q = in_i.read();
 		inetVec.push_back(*q);
 		cout << *q << endl;
 	}
-	in_i.close();
+	in_i.Inclose();
 	cout << endl;
 
 	Tarrif* w;
-	ifstream in_t(tariffPath);
-	while (!in_t.eof()) {
+	T_File<Tarrif> in_t(tariffPath);
+	while (!in_t.InEof()) {
 		w = new Tarrif;
-		in_t >> *w;
+		//in_t >> *w;
+		*w = in_t.read();
 		if (w->getTarrif_Name() == "") break;
 		for (int i = 0; i < inetVec.size(); i++)
 		{
@@ -73,15 +102,16 @@ int main() {
 		tariffVec.push_back(w);
 		cout << *w << endl;
 	}
-	in_t.close();
+	in_t.Inclose();
 	cout << endl;
 
 	
-	ifstream in_o(operPath);
+	T_File<Operator> in_o(operPath);
 	Operator* o;
-	while (!in_o.eof()) {
+	while (!in_o.InEof()) {
 		o = new Operator;
-		in_o >> *o;
+		//in_o >> *o;
+		*o = in_o.read();
 		if (o->getOperatorName() == "") break;
 		for (int i = 0; i < tariffVec.size(); i++)
 		{
@@ -95,18 +125,20 @@ int main() {
 		o->info();
 		cout << endl;
 	}
-	in_o.close();
+	in_o.Inclose();
 	cout << endl;
 
-	ifstream in_cl(clientPath);
+	T_File<Client> in_cl(clientPath);
 	Client* c;
 
 	Admin* a = new Admin;
-	in_cl >> *a;
+	//in_cl >> *a;
+	*a = in_cl.read();
 	clientVec.push_back(a);
-	while (!in_cl.eof()) {
+	while (!in_cl.InEof()) {
 		c = new Client;
-		in_cl >> *c;
+		//in_cl >> *c;
+		*c = in_cl.read();
 		if (c->getName() == "") break;
 		for (int i = 0; i < operVec.size(); i++)
 		{
@@ -120,7 +152,7 @@ int main() {
 		cout << *c;
 		cout << endl;
 	}
-	in_cl.close();
+	in_cl.Inclose();
 	cout << endl;
 
 
@@ -227,11 +259,16 @@ int main() {
 	//out2.close();
 	//out.close();
 
-	fstream out_o(operPath);
-	fstream out_i(inetPath);
-	fstream out_c(conPath);
-	fstream out_t(tariffPath);
-	fstream out_cl(clientPath);
+	//fstream out_o(operPath);
+	T_File<Operator> out_o(operPath);
+	//fstream out_i(inetPath);
+	T_File<Internet> out_i(inetPath);
+	//fstream out_c(conPath);
+	T_File<Connection> out_c(conPath);
+	//fstream out_t(tariffPath);
+	T_File<Tarrif> out_t(tariffPath);
+	//fstream out_cl(clientPath);
+	T_File<Client> out_cl(clientPath);
 	while (1)
 	{
 		system("cls");
@@ -281,36 +318,37 @@ int main() {
 		
 			for (int j = 0; j < inetVec.size(); j++)
 			{
-				out_i << inetVec[j];
+				out_i.write(inetVec[j]);
 			}
-			out_i.close();
+			//out_i.close();
 
 			for (int j = 0; j < conVec.size(); j++)
 			{
-				out_c << conVec[j];
+				out_c.write(conVec[j]);
 			}
-			out_c.close();
+			//out_c.close();
 
 
 			for (int j = 0; j < tariffVec.size(); j++)
 			{
-				out_t << *tariffVec[j];
+				out_t.write(*tariffVec[j]);
 			}
-			out_t.close();
+			//out_t.close();
 
 			for (int j = 0; j < operVec.size(); j++)
 			{
-				out_o << *operVec[j];
+				//out_o << *operVec[j];
+				out_o.write(*operVec[j]);
 			}
-			out_o.close();
+			//out_o.close();
 
-			out_cl << *clientVec[0];
+			out_cl.write(*clientVec[0]);
 			for (int j = 1; j < clientVec.size(); j++)
 			{
 
-				out_cl << *clientVec[j];
+				out_cl .write( *clientVec[j]);
 			}
-			out_cl.close();
+			//out_cl.close();
 
 			return 0;
 		default:

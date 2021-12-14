@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы ресурсов\List">
+      <UniqueIdentifier>{f9eedbdb-229f-4f22-90b9-5dedc9277934}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,6 +50,15 @@
     </ClCompile>
     <ClCompile Include="Input_exception.cpp">
       <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="list\Algorithm.cpp">
+      <Filter>Файлы ресурсов\List</Filter>
+    </ClCompile>
+    <ClCompile Include="list\Iterator.cpp">
+      <Filter>Файлы ресурсов\List</Filter>
+    </ClCompile>
+    <ClCompile Include="list\List.cpp">
+      <Filter>Файлы ресурсов\List</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +97,21 @@
     </ClInclude>
     <ClInclude Include="Func_Class.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="File_Header.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="list\Algorithm.h">
+      <Filter>Файлы ресурсов\List</Filter>
+    </ClInclude>
+    <ClInclude Include="list\Iterator.h">
+      <Filter>Файлы ресурсов\List</Filter>
+    </ClInclude>
+    <ClInclude Include="list\List.h">
+      <Filter>Файлы ресурсов\List</Filter>
+    </ClInclude>
+    <ClInclude Include="list\Node.h">
+      <Filter>Файлы ресурсов\List</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

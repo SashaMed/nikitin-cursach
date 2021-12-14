@@ -145,6 +145,9 @@
     <ClCompile Include="Input_exception.cpp" />
     <ClCompile Include="Internet.cpp" />
     <ClCompile Include="List.cpp" />
+    <ClCompile Include="list\Algorithm.cpp" />
+    <ClCompile Include="list\Iterator.cpp" />
+    <ClCompile Include="list\List.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mobile plan.cpp" />
     <ClCompile Include="Operator.cpp" />
@@ -156,10 +159,15 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="Exception.h" />
+    <ClInclude Include="File_Header.h" />
     <ClInclude Include="Func_Class.h" />
     <ClInclude Include="Input_exception.h" />
     <ClInclude Include="Internet.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="list\Algorithm.h" />
+    <ClInclude Include="list\Iterator.h" />
+    <ClInclude Include="list\List.h" />
+    <ClInclude Include="list\Node.h" />
     <ClInclude Include="Mobile plan.h" />
     <ClInclude Include="Operator.h" />
     <ClInclude Include="Service_class.h" />
