@@ -1,7 +1,7 @@
 #include "Algorithm.h"
 
 template<typename T>
-List<T>& Algorithm<T>::find(Iterator<T> begin, Iterator<T> end, T& buf)
+List<T>& Algorithm<T>::find(Iterator<T> begin, Iterator<T> end, T buf)
 {
 	List<T>* objList = new List<T>;
 	for (begin; begin != end; ++begin)

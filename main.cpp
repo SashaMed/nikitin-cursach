@@ -1,7 +1,13 @@
+//#include"list/List.cpp"
+#include"list/Algorithm.cpp"
 #include"Operator.h"
 #include"Client.h"
 #include"AdminClient.h"
 #include"File_Header.h"
+//#include"Algorithm.h"
+//#include"List.h"
+
+
 
 int main() {
 
@@ -22,21 +28,10 @@ int main() {
 	vector< Operator*> operVec;
 	vector<Client*> clientVec;
 
+	
+	List<Client> clientList;
 
 
-
-
-	//Connection* t;
-	//ifstream in_c(conPath);
-	//while (!in_c.eof()) {
-	//	t = new Connection;
-	//	in_c >> *t;
-	//	if (t->getName() == "") break;
-	//	conVec.push_back(*t);
-	//	cout << *t << endl;
-	//}
-	//in_c.close();
-	//cout << endl;
 
 
 	Connection* t;
@@ -53,17 +48,6 @@ int main() {
 	cout << endl;
 
 
-	//Internet* q ;
-	//ifstream in_i(inetPath);
-	//in_i.get();
-	//while (!in_i.eof()) {
-	//	q = new Internet;
-	//	in_i >> *q;
-	//	inetVec.push_back(*q);
-	//	cout << *q << endl;
-	//}
-	//in_i.close();
-	//cout << endl;
 
 	Internet* q;
 	T_File<Internet> in_i(inetPath);
@@ -134,6 +118,7 @@ int main() {
 	Admin* a = new Admin;
 	//in_cl >> *a;
 	*a = in_cl.read();
+	clientList.push_back(*a);
 	clientVec.push_back(a);
 	while (!in_cl.InEof()) {
 		c = new Client;
@@ -147,7 +132,7 @@ int main() {
 				c->setOperator(*operVec[i]);
 			}
 		}
-
+		clientList.push_back(*c);
 		clientVec.push_back(c);
 		cout << *c;
 		cout << endl;
@@ -160,81 +145,11 @@ int main() {
 	cout << "Press any button to continue ";
 	_getch();
 
-	conArr[0].setName("danila");
-	conArr[0].setCost(51);
-	conArr[0].setMinutes(0);
-	conArr[0].setCount_SMS(1);
-
-	conArr[1].setName("pitsa");
-	conArr[1].setCost(4);
-	conArr[1].setMinutes(2000);
-	conArr[1].setCount_SMS(20000);
-
-	inetArr[0].setName("zala ebanuti");
-	inetArr[0].setCost(2012);
-	inetArr[0].setLimit(8900);
-	inetArr[0].setSpeed(250);
-
-
-	inetArr[1].setName("byfly ebani");
-	inetArr[1].setCost(30);
-	inetArr[1].setLimit(1000000);
-	inetArr[1].setSpeed(250);
-
-
-	tarrifArr[0].setInternet(inetArr[0]);
-	tarrifArr[0].setConnection(conArr[0]);
-	tarrifArr[0].setTarrif_Name("lemon");
-
-	tarrifArr[1].setInternet(inetArr[1]);
-	tarrifArr[1].setConnection(conArr[1]);
-	tarrifArr[1].setTarrif_Name("arbuz");
-
-	Operator* oper = new Operator[3];
-	oper[0].setTariff(tarrifArr[0]);
-	oper[0].setOperatorName("life govan");
-	oper[0].setNumber("+375447750026");
-
-
-	oper[1].setOperatorName("chad A1");
-	oper[1].setTariff(tarrifArr[1]);
-	oper[1].setNumber("+375447275676");
-
-	oper[2].setOperatorName("virgin MTS");
-	oper[2].setTariff(tarrifArr[1]);
-	oper[2].setNumber("+375331234567");
-
-
-	Client sasha("mednis", "sasha", "+375447750026", oper[0]);
-	sasha.setPass("12345");
-
-	Client anna("gatal", "anna", "+375447275676", oper[1]);
-	anna.setPass("godofwar");
-
-	Client oleg("vector", "oleg", "+375331234567", oper[2]);
-	oleg.setPass("321");
-
-	Admin admin("dashkevich", "nikita", "+375293063043");
-	admin.setPass("sexing");
-
-	vector<Client*> clientVec2;
-	clientVec2.push_back(&sasha);
-	clientVec2.push_back(&anna);
-	clientVec2.push_back(&oleg);
-	clientVec2.push_back(&admin);
-
-	//vector< Operator*> operVec;
-	//operVec.push_back(&sasha.getOperator());
-	//operVec.push_back(&anna.getOperator());
-	//operVec.push_back(&oleg.getOperator());
+	
 
 
 
 
-
-	vector<Tarrif*> tariffVec2;
-	tariffVec2.push_back(&tarrifArr[0]);
-	tariffVec2.push_back(&tarrifArr[1]);
 
 
 	Client* temp;
@@ -242,32 +157,15 @@ int main() {
 	string forPass;
 	char sw;
 	int fl = 0;
-	//vector<Internet> inetVec;
-	//vector<Connection> conVec;
-	
 
-	//fstream out(conPath);
-	//fstream out2(inetPath);
 
-	//fstream out3(tariffPath);
-	//for (int q = 0; q < 2; q++)
-	//{
-	//	out3 << *tariffVec2[q];
-	//}
-	//out3.close();
-	
-	//out2.close();
-	//out.close();
-
-	//fstream out_o(operPath);
+	List<Client> TempList;
+	Client *ForLogin = new Client ;
+	Algorithm<Client> al;
 	T_File<Operator> out_o(operPath);
-	//fstream out_i(inetPath);
 	T_File<Internet> out_i(inetPath);
-	//fstream out_c(conPath);
 	T_File<Connection> out_c(conPath);
-	//fstream out_t(tariffPath);
 	T_File<Tarrif> out_t(tariffPath);
-	//fstream out_cl(clientPath);
 	T_File<Client> out_cl(clientPath);
 	while (1)
 	{
@@ -287,25 +185,46 @@ int main() {
 			cout << "\nInput password: ";
 			//cin >> forPass;
 			input_letters_and_numbers(cin, forPass);
-			fl = 0;
-			for (int i = 0; i < clientVec.size(); i++)
-			{
-				if (clientVec[i]->getNumber() == forNum && clientVec[i]->getPass() == forPass)
-				{
-					fl++;
-					if (clientVec[i]->class_cheak() == 0)
-					{
-						clientVec[i]->menu(operVec, tariffVec, inetVec, conVec);
-					}
-					else { clientVec[i]->menu(clientVec, operVec, &tariffVec, &inetVec, &conVec); }
-					break;
-				}
-			}
-			if (fl == 0)
+			ForLogin->setNumber(forNum);
+			ForLogin->setPass(forPass);
+			/**ForLogin = */
+			if (al.find(clientList.begin(), clientList.end(), *ForLogin).get_size() == 0)
 			{
 				cout << "\nUser is not found.\n";
 				cin.get();
+				break;
 			}
+			fl = al.getIndex(clientList.begin(), clientList.end(),
+				al.find(clientList.begin(), clientList.end(), *ForLogin)[0]);
+				
+			if (fl == -1)
+			{
+				cout << "\nUser is not found.\n";
+				cin.get();
+				break;
+			}
+			else {
+				if (clientVec[fl]->class_cheak() == 0)
+				{
+					clientVec[fl]->menu(operVec, tariffVec, inetVec, conVec);
+				}
+				else { clientVec[fl]->menu(clientVec, operVec, &tariffVec, &inetVec, &conVec); }
+				break;
+			}
+			//for (int i = 0; i < clientVec.size(); i++)
+			//{
+			//	if (clientVec[i]->getNumber() == forNum && clientVec[i]->getPass() == forPass)
+			//	{
+			//		fl++;
+			//		if (clientVec[i]->class_cheak() == 0)
+			//		{
+			//			clientVec[i]->menu(operVec, tariffVec, inetVec, conVec);
+			//		}
+			//		else { clientVec[i]->menu(clientVec, operVec, &tariffVec, &inetVec, &conVec); }
+			//		break;
+			//	}
+			//}
+
 			break;
 		case '2':
 			temp = new Client;

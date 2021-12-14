@@ -68,7 +68,7 @@ bool Iterator<T>::operator!=(Iterator& iter)
 }
 
 template<typename T>
-T& Iterator<T>::operator *()
+T Iterator<T>::operator *()
 {
 	return current->data;
 }

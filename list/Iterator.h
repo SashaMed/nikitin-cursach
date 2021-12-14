@@ -27,5 +27,5 @@ public:
 	bool operator==(Iterator& iter);
 	bool operator!=(Iterator& iter);
 
-	T& operator *();
+	T operator *();
 };

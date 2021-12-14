@@ -47,6 +47,39 @@ public:
 	friend ostream& operator<<(ostream& out, const Client& c);
 
 
+	bool operator == (Client &obj) {
+		if (obj.number != "\0" /*|| number != "\0"*/) {
+			if (this->number != obj.number) return false;
+		}
+		if (obj.name != "\0" /*|| name != "\0"*/) {
+			if (this->name != obj.name) return false;
+		}
+		if (obj.surname != "\0" /*|| surname != "\0"*/) {
+			if (this->surname != obj.surname) return false;
+		}
+		if (obj.pass != "\0" /*|| pass != "\0"*/) {
+			if (this->pass != obj.pass) return false;
+		}
+		return true;
+	}
+
+
+	bool operator == (Client *obj) {
+		if (obj->number != "\0" || number != "\0") {
+			if (this->number != obj->number) return false;
+		}
+		if (obj->name != "\0" || name != "\0") {
+			if (this->name != obj->name) return false;
+		}
+		if (obj->surname != "\0" || surname != "\0") {
+			if (this->surname != obj->surname) return false;
+		}
+		if (obj->pass != "\0" || pass != "\0") {
+			if (this->pass != obj->pass) return false;
+		}
+		return true;
+	}
+
 	friend ostream& operator << (fstream& out, const Client obj)
 	{
 		out << setw(SETWSIZE);
