@@ -103,7 +103,6 @@ void Client::operator=(const Client& obj)
 	this->surname = obj.surname;
 	this->number = obj.number;
 	this->pass = obj.pass;
-	//Operator temp(obj.oper)
 	this->setOperator(obj.oper);
 }
 
@@ -128,7 +127,7 @@ void Client::menu(vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<I
 		cout << *this << endl << endl;
 		cout << "Choose operation: \n\n";
 		cout << "1. See balance.\n2. Change tariff.\n3. Connect internet.\n4. Temporary block of number.\n";
-		cout << "5. Top up balance.\n6. Change internet.\n7. Change connection.\n8. See info.\n9. Exit.\n10. Undo last action.\n\n";
+		cout << "5. Top up balance.\n6. See info.\n7. Exit.\n8. Undo last action.\n\n";
 
 		if (this->getOperator().getBlockCheak() == true)
 		{
@@ -145,7 +144,6 @@ void Client::menu(vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<I
 		}
 		else
 		{
-			//cin >> switch_int;
 			input_number_in_diapazone(cin, switch_int, 1, 10);
 			cin.get();
 			cin.clear();
@@ -166,7 +164,6 @@ void Client::menu(vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<I
 					cout << i + 1 << ")\n";
 					cout << *tariffVec[i] << endl;
 				}
-				//cin >> temp;
 				input_number_in_diapazone<int>(cin, temp, 1, tariffVec.size());
 				if (temp > tariffVec.size()) { cout << "Wrong input." << endl; rewind(stdin);  _getch(); break; }
 				cout << "It will cost " << tariffVec[temp - 1]->getTarrifCost() << "$, continue (y/n)?\n";
@@ -235,10 +232,8 @@ void Client::menu(vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<I
 				otkat.push_back(*this);
 				fl = 0;
 				cout << "Input number to top up balance, or input '1111' to top up balance on this number.\n";
-				//cin >> inputTemp;
 				input_phone_number(cin, inputTemp);
-				//if (inputTemp != "1111")
-				//{
+		
 				if (inputTemp == "1111")
 					inputTemp = number;
 				for (int j = 0; j < operVec.size(); j++)
@@ -257,14 +252,9 @@ void Client::menu(vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<I
 					rewind(stdin);  _getch();
 					break;
 				}
-				//}
-				//else
-				//{
-				//	operTemp = &this->getOperator();
-				//}
 
 				cout << "Input amount of money to top up balance.\n";
-				//cin >> temp;
+				
 				input_number_in_diapazone<int>(cin, temp, 1, 2000000);
 				operTemp->change_balance(temp);
 				if (inputTemp == number)
@@ -273,73 +263,25 @@ void Client::menu(vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<I
 				rewind(stdin);  _getch();
 				break;
 
-
 			case 6:
-				otkat.push_back(*this);
-				cout << "CHOOSE INTERNET: \n" << endl;
-				cout << "  "; inetVec[0].print_shapka();
-				for (int i = 0; i < inetVec.size(); i++)
-				{
-					cout << i + 1 << ")\n";
-					cout << inetVec[i] << endl;
-				}
-
-				//cin >> temp;
-				input_number_in_diapazone<int>(cin, temp, 1, inetVec.size());
-				if (temp > inetVec.size()) { cout << "Wrong input." << endl; rewind(stdin);  _getch(); break; }
-				cout << "It will cost " << inetVec[temp - 1].getCost() << "$, continue (y/n)?\n";
-				cin >> switch_on;
-				if (switch_on == 'y')
-				{
-					this->getOperator().setInternet(inetVec[temp - 1]);
-					this->getOperator().change_balance(-(int)inetVec[temp - 1].getCost());
-					cout << "Internet has been changed.\n";
-				}
-				else { cout << "Internet has not been changed.\n"; }
-
-				rewind(stdin);  _getch();
-				break;
-
-
-			case 7:
-				otkat.push_back(*this);
-				cout << "CHOOSE CONNECTION: \n" << endl;
-				cout << "  "; conVec[0].print_shapka();
-				for (int i = 0; i < conVec.size(); i++)
-				{
-					cout << i + 1 << ")\n";
-					cout << conVec[i] << endl;
-				}
-
-				//cin >> temp;
-				input_number_in_diapazone<int>(cin, temp, 1, conVec.size());
-				if (temp > conVec.size()) { cout << "Wrong input." << endl; rewind(stdin);  _getch(); break; }
-				cout << "It will cost " << conVec[temp - 1].getCost() << "$, continue (y/n)?\n";
-				cin >> switch_on;
-				if (switch_on == 'y')
-				{
-					this->getOperator().setConnection(conVec[temp - 1]);
-					this->getOperator().change_balance(-(int)conVec[temp - 1].getCost());
-					cout << "Connection has been changed.\n";
-				}
-				else { cout << "Connection has not been changed.\n"; }
-
-				rewind(stdin);  _getch();
-				break;
-
-			case 8:
 				this->getOperator().info();
 				cout << endl;
 				cin.get();
 				break;
-			case 9:
+			case 7:
 				for (int i = 0; i < operVec.size(); i++) {
-					if (operVec[i]->getNumber() == this->number)
-						this->getOperator() = *operVec[i];
+					if (operVec[i]->getNumber() == this->number) {
+
+						*operVec[i] = this->getOperator();
+						operVec[i]->setConnection(this->getOperator().getConnection());
+						operVec[i]->setInternet(this->getOperator().getInternet());
+						break;
+					}
 				}
 				return;
 				break;
-			case 10:
+			case 8:
+				if(otkat.size()>0)
 				*this = otkat.back();
 				otkat.pop_back();
 				cout << endl;
