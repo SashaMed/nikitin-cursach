@@ -107,7 +107,7 @@ void Client::operator=(const Client& obj)
 	this->setOperator(obj.oper);
 }
 
-void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<Internet> inetVec, vector<Connection> conVec)
+void Client::menu(vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<Internet> inetVec, vector<Connection> conVec)
 {
 	for (int i = 0; i < operVec.size(); i++) {
 		if (operVec[i]->getNumber() == this->number)
@@ -125,7 +125,7 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 	{
 		system("cls");
 		cout << "Logged into account: \n";
-		cout << *this << endl<< endl;
+		cout << *this << endl << endl;
 		cout << "Choose operation: \n\n";
 		cout << "1. See balance.\n2. Change tariff.\n3. Connect internet.\n4. Temporary block of number.\n";
 		cout << "5. Top up balance.\n6. Change internet.\n7. Change connection.\n8. See info.\n9. Exit.\n10. Undo last action.\n\n";
@@ -237,33 +237,38 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 				cout << "Input number to top up balance, or input '1111' to top up balance on this number.\n";
 				//cin >> inputTemp;
 				input_phone_number(cin, inputTemp);
-				if (inputTemp != "1111")
+				//if (inputTemp != "1111")
+				//{
+				if (inputTemp == "1111")
+					inputTemp = number;
+				for (int j = 0; j < operVec.size(); j++)
 				{
-					for (int j = 0; j < operVec.size(); j++)
+					if (operVec[j]->getNumber() == inputTemp)
 					{
-						if (operVec[j]->getNumber() == inputTemp)
-						{
-							fl++;
-							operTemp = operVec[j];
-						}
-
-					}
-					if (fl == 0)
-					{
-						cout << "\nUser is not found.\n";
-						rewind(stdin);  _getch();
+						fl++;
+						operTemp = operVec[j];
 						break;
 					}
+
 				}
-				else
+				if (fl == 0)
 				{
-					operTemp = &this->getOperator();
+					cout << "\nUser is not found.\n";
+					rewind(stdin);  _getch();
+					break;
 				}
+				//}
+				//else
+				//{
+				//	operTemp = &this->getOperator();
+				//}
 
 				cout << "Input amount of money to top up balance.\n";
 				//cin >> temp;
 				input_number_in_diapazone<int>(cin, temp, 1, 2000000);
 				operTemp->change_balance(temp);
+				if (inputTemp == number)
+					this->getOperator().change_balance(temp);
 				cout << temp << "$ was credited to the " << operTemp->getNumber() << " balance.\n";
 				rewind(stdin);  _getch();
 				break;
@@ -336,7 +341,7 @@ void Client::menu( vector<Operator*> operVec, vector<Tarrif*> tariffVec, vector<
 				break;
 			case 10:
 				*this = otkat.back();
-					otkat.pop_back();
+				otkat.pop_back();
 				cout << endl;
 				cin.get();
 				break;

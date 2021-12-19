@@ -3,82 +3,53 @@
 
 
 
-class File {
-protected:
+
+
+
+template<typename T>
+class T_File  {
+private:
 	ofstream out;
 	ifstream in;
-	fstream fstr;
-public:
+	fstream fstream;
 	string path;
-	File(string n) { path = n; }
-};
-
-
-template<typename valueType>
-class T_File : public File {
 public:
-	T_File(string n) :File(n) {};
+	T_File(string n)  { path = n; };
 	~T_File() {
 		if (out.is_open()) { out.close(); }
 		if (in.is_open()) { in.close(); }
-		if (fstr.is_open()) { fstr.close(); }
-	}
-	bool open(string path, unsigned int mode) {
-		switch (mode)
-		{
-		case 1:
-			out.open(path);
-			if (out.is_open()) return true;
-			return false;
-		case 2:
-			in.open(path);
-			if (in.is_open()) return true;
-			return false;
-		case 3:
-			fstr.open(path, ofstream::app);
-			if (fstr.is_open()) return true;
-			return false;
-		default:
-			break;
-		}
+		if (fstream.is_open()) { fstream.close(); }
 	}
 
-	valueType read() {
+
+
+	T read() {
 		if (!in.is_open()) {
 			in.open(path);
 		}
-		valueType buf;
-		in >> buf;
-		return buf;
+		T temp;
+		in >> temp;
+		return temp;
 	}
 
-	valueType read(string p) {
-		if (!in.is_open()) {
-			in.open(p);
+
+
+	void write(T obj) {
+		if (!fstream.is_open()) {
+			fstream.open(path);
 		}
-		valueType buf;
-		in >> buf;
-		in.close();
-		return buf;
+		fstream << obj;
 	}
 
-
-	void write(valueType obj) {
-		if (!fstr.is_open()) {
-			fstr.open(path);
-		}
-		fstr << obj;
+	void Out_Close() {
+		fstream.close();
 	}
 
-	void Outclose() {
-		fstr.close();
-	}
-
-	void Inclose() {
+	void In_Close() {
 		in.close();
 	}
 
-	bool InEof() {
+	bool In_Eof() {
 		if (in.eof()) return true;
 		return false;
 	}

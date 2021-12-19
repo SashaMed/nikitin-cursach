@@ -36,7 +36,7 @@ int main() {
 
 	Connection* t;
 	T_File<Connection> in_c(conPath);
-	while (!in_c.InEof()) {
+	while (!in_c.In_Eof()) {
 		t = new Connection;
 		//in_c >> *t;
 		*t = in_c.read();
@@ -44,7 +44,7 @@ int main() {
 		conVec.push_back(*t);
 		cout << *t << endl;
 	}
-	in_c.Inclose();
+	in_c.In_Close();
 	cout << endl;
 
 
@@ -52,19 +52,19 @@ int main() {
 	Internet* q;
 	T_File<Internet> in_i(inetPath);
 	in_i.get();
-	while (!in_i.InEof()) {
+	while (!in_i.In_Eof()) {
 		q = new Internet;
 		//in_i >> *q;
 		*q = in_i.read();
 		inetVec.push_back(*q);
 		cout << *q << endl;
 	}
-	in_i.Inclose();
+	in_i.In_Close();
 	cout << endl;
 
 	Tarrif* w;
 	T_File<Tarrif> in_t(tariffPath);
-	while (!in_t.InEof()) {
+	while (!in_t.In_Eof()) {
 		w = new Tarrif;
 		//in_t >> *w;
 		*w = in_t.read();
@@ -86,13 +86,13 @@ int main() {
 		tariffVec.push_back(w);
 		cout << *w << endl;
 	}
-	in_t.Inclose();
+	in_t.In_Close();
 	cout << endl;
 
 	
 	T_File<Operator> in_o(operPath);
 	Operator* o;
-	while (!in_o.InEof()) {
+	while (!in_o.In_Eof()) {
 		o = new Operator;
 		//in_o >> *o;
 		*o = in_o.read();
@@ -109,7 +109,7 @@ int main() {
 		o->info();
 		cout << endl;
 	}
-	in_o.Inclose();
+	in_o.In_Close();
 	cout << endl;
 
 	T_File<Client> in_cl(clientPath);
@@ -120,7 +120,7 @@ int main() {
 	*a = in_cl.read();
 	clientList.push_back(*a);
 	clientVec.push_back(a);
-	while (!in_cl.InEof()) {
+	while (!in_cl.In_Eof()) {
 		c = new Client;
 		//in_cl >> *c;
 		*c = in_cl.read();
@@ -137,7 +137,7 @@ int main() {
 		cout << *c;
 		cout << endl;
 	}
-	in_cl.Inclose();
+	in_cl.In_Close();
 	cout << endl;
 
 

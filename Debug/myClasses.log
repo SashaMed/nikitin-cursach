@@ -21,5 +21,4 @@ D:\education\2 курс\никитин курсач\myClasses\main.cpp(244,22): 
 D:\education\2 курс\никитин курсач\myClasses\main.cpp(251,22): warning C4018: <: несоответствие типов со знаком и без знака
 D:\education\2 курс\никитин курсач\myClasses\main.cpp(257,22): warning C4018: <: несоответствие типов со знаком и без знака
 D:\education\2 курс\никитин курсач\myClasses\main.cpp(265,22): warning C4018: <: несоответствие типов со знаком и без знака
-     Создается библиотека D:\education\2 курс\никитин курсач\myClasses\Debug\myClasses.lib и объект D:\education\2 курс\никитин курсач\myClasses\Debug\myClasses.exp
   myClasses.vcxproj -> D:\education\2 курс\никитин курсач\myClasses\Debug\myClasses.exe
